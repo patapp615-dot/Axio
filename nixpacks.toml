@@ -4,9 +4,11 @@ nixPkgs = ["php", "git", "curl"]
 [phases.install]
 cmds = [
   "curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y",
-  "source $HOME/.elan/env",
-  "lean --version"
+  "export PATH=\"$HOME/.elan/bin:$PATH\"",
+  "lean --version",
+  "lake init lean_project",
+  "cd lean_project && lake exe cache get"
 ]
 
 [start]
-cmd = "php -S 0.0.0.0:$PORT"
+cmd = "php -S 0.0.0.0:$PORT index.php"

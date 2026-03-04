@@ -11,7 +11,7 @@ $code .= "  " . $step . "\n";
 
 file_put_contents($leanFile, $code);
 
-$output = shell_exec("bash -c 'source $HOME/.elan/env && cd ../lean_project && lake build 2>&1'");
+$output = shell_exec("export PATH=\$HOME/.elan/bin:\$PATH && cd lean_project && lake build 2>&1");
 
 if (strpos($output, "error") !== false) {
     echo json_encode([

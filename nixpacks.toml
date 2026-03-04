@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["php", "git", "curl"]
+
+[phases.install]
+cmds = [
+  "curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y",
+  "source $HOME/.elan/env",
+  "lean --version"
+]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT"
